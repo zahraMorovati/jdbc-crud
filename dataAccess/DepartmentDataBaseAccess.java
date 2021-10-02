@@ -41,6 +41,36 @@ public class DepartmentDataBaseAccess {
             System.out.println("invalid department id!");
         }
     }
+    
+     public void printDepartments() throws SQLException {
+        try {
+            if (connection != null) {
+                Statement statement = connection.createStatement();
+                String sqlQuery = String.format("select * from department");
+                ResultSet resultSet = statement.executeQuery(sqlQuery);
+
+                while (resultSet.next()) {
+                    String id = resultSet.getString(1);
+                    String name = resultSet.getString(2);
+                    String phone = resultSet.getString(3);
+                    System.out.println("id= " + id);
+                    System.out.println("name= " + name);
+                    System.out.println("phone= " + phone);
+                }
+                if(!resultSet.wasNull()){
+                    System.out.println("there is no employee with this department id!");
+                }
+                resultSet.close();
+            } else {
+                System.out.println("cannot access to database");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("invalid department id!");
+        }
+
+    }
+    
+    
 
     
 }
