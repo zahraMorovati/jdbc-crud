@@ -24,6 +24,23 @@ public class DepartmentDataBaseAccess {
             System.out.println("cannot access to database");
         }
     }
+    
+    public void updateDepartmentName(String name, int departmentId) throws SQLException {
+        try {
+            if (connection != null) {
+                Statement statement = connection.createStatement();
+                String sqlQuery = String.format("UPDATE department\n" +
+                        "SET Department_name ='%s'" +
+                        "WHERE DepartmentID ='%d'", name, departmentId);
+                int i = statement.executeUpdate(sqlQuery);
+                System.out.println("\u001B[32m" + "operation done successfully!" + "\u001B[0m");
+            } else {
+                System.out.println("cannot access to database");
+            }
+        } catch (NullPointerException e) {
+            System.out.println("invalid department id!");
+        }
+    }
 
     
 }
