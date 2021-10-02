@@ -70,6 +70,21 @@ public class DepartmentDataBaseAccess {
 
     }
     
+      public void delete(int departmentID) throws SQLException {
+        if (connection != null) {
+            Statement statement = connection.createStatement();
+            String sqlQuery = String.format("delete from department where DepartmentID='%d'", departmentID);
+            int i = statement.executeUpdate(sqlQuery);
+            if (i != 0)
+                System.out.println("\u001B[32m" + "operation done successfully!" + "\u001B[0m");
+            else
+                System.out.println("invalid department id!");
+
+        } else {
+            System.out.println("cannot access to database");
+        }
+
+    }
     
 
     
