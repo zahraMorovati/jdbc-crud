@@ -46,5 +46,38 @@ public class EmployeeDataBaseAccess {
             System.out.println("cannot access to database");
         }
     }
+	
+	public void printDepartmentEmployees(int departmentID) throws SQLException {
+        try {
+            if (connection != null) {
+                Statement statement = connection.createStatement();
+                String sqlQuery = String.format("select * from employee where DepartmentID='%d' ", departmentID);
+                ResultSet resultSet = statement.executeQuery(sqlQuery);
+                while (resultSet.next()) {
+
+                    String id = resultSet.getString(1);
+                    String first_name = resultSet.getString(2);
+                    String last_name = resultSet.getString(3);
+                    String userID = resultSet.getString(4);
+                    String birthDate = resultSet.getString(5);
+                    String departmentId = resultSet.getString(6);
+                    System.out.println("id= " + id);
+                    System.out.println("name= " + first_name + " " + last_name);
+                    System.out.println("user id= " + userID);
+                    System.out.println("birth date= " + birthDate);
+                    System.out.println("department id= " + departmentId);
+                }
+                if(!resultSet.wasNull()){
+                    System.out.println("there is no employee with this department id!");
+                }
+                resultSet.close();
+            } else {
+                System.out.println("cannot access to database");
+            }
+        } catch (NullPointerException nullPointerException) {
+            System.out.println("there is no employee with this department id!");
+        }
+
+    }
 
 }
