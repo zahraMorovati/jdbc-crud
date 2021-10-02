@@ -79,5 +79,21 @@ public class EmployeeDataBaseAccess {
         }
 
     }
+	
+	 public void delete(int employeeID) throws SQLException {
+        if (connection != null) {
+            Statement statement = connection.createStatement();
+            String sqlQuery = String.format("delete from employee where EmployeeID='%d'", employeeID);
+            int i=statement.executeUpdate(sqlQuery);
+            if (i != 0)
+                System.out.println("\u001B[32m" + "operation done successfully!" + "\u001B[0m");
+            else
+                System.out.println("invalid employee id!");
+
+        } else {
+            System.out.println("cannot access to database");
+        }
+
+    }
 
 }
