@@ -10,7 +10,7 @@ public class DepartmentDataBaseAccess {
 
     public DepartmentDataBaseAccess() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/maktab_58", "root", "george1378");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/maktab_58", "root", "password");
     }
 
     
